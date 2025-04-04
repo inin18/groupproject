@@ -18,7 +18,6 @@ IN passenger1 CHAR(9) , IN passenger2 CHAR(9),
 IN passenger3 CHAR(9) , IN passenger4 CHAR(9)
 ) AS $$
 DECLARE
-	--cur SCROLL CURSOR () FOR (passenger1, passenger2, passenger3, passenger4);
 	tmp CHAR(9);
 	passengers CHAR(9)[];
 BEGIN

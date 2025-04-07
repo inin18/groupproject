@@ -5,9 +5,10 @@ IN start_date DATE, IN end_date DATE
 BEGIN
 	INSERT INTO rent VALUES(customer, car, start_date, end_date);
 	INSERT INTO ride VALUES(car, start_date, end_date, customer);
-	COMMIT;
+	--COMMIT;
 EXCEPTION WHEN OTHERS THEN
-	ROLLBACK;
+	RAISE NOTICE 'ERROR OCCURED: %', SQLERRM;
+	--ROLLBACK;
 END;
 $$ LANGUAGE plpgsql;
 
@@ -29,9 +30,9 @@ BEGIN
 				INSERT INTO ride VALUES(car, start_date, end_date, tmp);
 			END IF;
 		END LOOP;
-	COMMIT;
+	--COMMIT;
 EXCEPTION WHEN OTHERS THEN
-	ROLLBACK;
-	RAISE EXCEPTION 'INSERT ERROR.';
+	--ROLLBACK;
+	RAISE NOTICE 'ERROR OCCURED: %', SQLERRM;
 END;
 $$ LANGUAGE plpgsql;
